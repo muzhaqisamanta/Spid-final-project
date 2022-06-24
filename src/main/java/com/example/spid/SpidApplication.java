@@ -15,10 +15,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 public class SpidApplication implements CommandLineRunner {
-	@Autowired
-	public UserService userService;
-	@Autowired
-	public SpidService spidService;
+//	@Autowired
+//	public UserService userService;
+//	@Autowired
+//	public SpidService spidService;
 
 	public static void main(String[] args){
 		SpringApplication.run(SpidApplication.class, args);

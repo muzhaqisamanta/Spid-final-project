@@ -1,15 +1,14 @@
-package com.example.spid;
+package com.example.spid.postgresTest;
 
-import com.example.spid.entities.Spid;
+import com.example.spid.SpidApplication;
 import com.example.spid.entities.User;
-import com.example.spid.entities.enums.Status;
-import com.example.spid.entities.enums.Type;
+import com.example.spid.repositories.UserRepository;
 import com.example.spid.service.SpidService;
 import com.example.spid.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 @SpringBootTest(classes = {SpidApplication.class})
 public class UserServiceTest {
@@ -18,7 +17,10 @@ public class UserServiceTest {
     private UserService userService;
     @Autowired
     private SpidService spidService;
+    @Autowired
+    UserRepository userRepository;
 
+    //creates a new user
     @Test
     public void createUserTest() {
         System.out.println(userService.createUser(new User(
@@ -27,16 +29,17 @@ public class UserServiceTest {
     }
 
     @Test
-    public void createSpidTest() {
-        System.out.println(spidService.createSpid(new Spid(Status.PENDING, Type.LEVEL_1, new User())));
+    //finds user with id 1
+    public void getUserTest() throws Exception {
+        System.out.println(userService.getUser(1L));
     }
 
+    //edits user with id 1, from surname=example to surname=updated
     @Test
-    public void editUser() throws Exception {
+    public void editUserTest() throws Exception {
         User user = new User("example", "example", "example", "example", "example", "example");
         userService.editUser(1, user);
         user.setSurname("updated");
         System.out.println(user);
     }
-
 }
