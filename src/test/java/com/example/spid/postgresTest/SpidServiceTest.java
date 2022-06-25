@@ -26,7 +26,7 @@ public class SpidServiceTest {
         Spid newSpid = spidService.createSpid(new Spid(Status.PENDING, Type.LEVEL_1, firstUser));
     }
 
-    //test the list of all spids
+//    test the list of all spids
     @Test
     public void retrieveAllSpidsTest() throws Exception {
         System.out.println(spidService.retrieveAllSpids());

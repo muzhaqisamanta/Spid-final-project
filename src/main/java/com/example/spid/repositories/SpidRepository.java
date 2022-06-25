@@ -10,5 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface SpidRepository extends JpaRepository<Spid, Long> {
-//    @Query("SELECT s from Spid s WHERE s.")
+//    @Query("SELECT s from Spid s WHERE s.description LIKE '%?a%'")
+//    Optional<Spid> findDscLike(String description);
+    Optional<Spid> findSpidByUser(User user);
+
 }
