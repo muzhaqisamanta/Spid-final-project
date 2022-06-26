@@ -19,6 +19,7 @@ public class Spid extends Base{
     private Status status;
     @Enumerated(EnumType.STRING)
     private Type type;
+    private String description;
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

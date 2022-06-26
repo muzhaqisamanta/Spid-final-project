@@ -2,6 +2,9 @@ package com.example.spid.controllers;
 
 import com.example.spid.entities.Spid;
 import com.example.spid.entities.User;
+import com.example.spid.exceptions.customExceptions.NoSpidsFoundException;
+import com.example.spid.repositories.SpidRepository;
+import com.example.spid.repositories.UserRepository;
 import com.example.spid.service.SpidService;
 import com.example.spid.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,8 @@ public class MainController {
     UserService userService;
     @Autowired
     SpidService spidService;
-
+    @Autowired
+    SpidRepository spidRepository;
     @PostMapping("/addUser")
     public ResponseEntity<User> addUser (@RequestBody User user){
         return new ResponseEntity(userService.createUser(user), HttpStatus.CREATED);
@@ -54,5 +58,15 @@ public class MainController {
     public ResponseEntity<Spid> changeSpidStatus(
             @PathVariable (name = "id")Long id) throws Exception {
         return new ResponseEntity(spidService.changeStatus(id),HttpStatus.OK);
+    }
+    @GetMapping("/search/spid")
+    public ResponseEntity<Spid> searchSpids(@RequestParam String keyword) throws NoSpidsFoundException {
+        List<Spid> seachForSpids = spidService.searchSpids(keyword);
+        if( seachForSpids.isEmpty()){
+            throw new NoSpidsFoundException("No spids found.");
+        }
+        else {
+            return new ResponseEntity(seachForSpids,HttpStatus.ACCEPTED);
+        }
     }
 }

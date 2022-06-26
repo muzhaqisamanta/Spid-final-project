@@ -55,4 +55,8 @@ public class SpidService {
         return spidRepository.save(findSpid.get());
     }
 
+    public List<Spid> searchSpids(String keyword){
+        return spidRepository.searchSpid(keyword);
+    }
+
 }

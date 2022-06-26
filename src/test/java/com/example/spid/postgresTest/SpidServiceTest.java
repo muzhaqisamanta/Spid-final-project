@@ -23,7 +23,7 @@ public class SpidServiceTest {
     @Test
     public void createSpidTest() throws Exception {
         User firstUser = userService.getUser(1L);
-        Spid newSpid = spidService.createSpid(new Spid(Status.PENDING, Type.LEVEL_1, firstUser));
+        Spid newSpid = spidService.createSpid(new Spid(Status.PENDING, Type.LEVEL_1,"", firstUser));
     }
 
 //    test the list of all spids
